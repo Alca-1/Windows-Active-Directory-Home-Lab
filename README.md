@@ -278,3 +278,21 @@ Select-Object Name,SamAccountName
 ```
 
 ![Provisioned Users](screenshots/ad-users.png)
+
+## What I Learned
+
+This project provided practical experience with:
+
+- Active Directory administration
+- Organizational Units and security groups
+- AGDLP
+- DNS and Active Directory service discovery
+- Group Policy
+- SMB and NTFS permissions
+- Account lockout policies
+- Windows Event Viewer
+- Delegated administration
+- Least privilege
+- Windows LAPS
+- PowerShell automation
+- Windows infrastructure troubleshooting
