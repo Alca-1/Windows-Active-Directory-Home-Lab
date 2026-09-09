@@ -250,3 +250,31 @@ Reset-LapsPassword
 ```
 
 A new password was successfully generated and stored in Active Directory.
+
+## PowerShell Automation
+
+User provisioning was automated using PowerShell and CSV input.
+
+The script automatically:
+
+- Creates Active Directory users
+- Places users in the correct OU
+- Assigns the appropriate department security group
+- Sets a temporary password
+- Requires password change at first logon
+
+Files:
+
+```text
+scripts/add-users.ps1
+examples/users-example.csv
+```
+
+The lab users were verified using:
+
+```
+Get-ADUser -Filter * -SearchBase "OU=Lab-users,DC=adlab,DC=test" |
+Select-Object Name,SamAccountName
+```
+
+![Provisioned Users](screenshots/ad-users.png)
