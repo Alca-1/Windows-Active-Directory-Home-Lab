@@ -166,3 +166,43 @@ The lockout was also verified in the Domain Controller Security log using **Even
 
 
 ![Event 4740](screenshots/event-viewer-4740.png)
+
+## Helpdesk Delegation
+
+A dedicated helpdesk account was created and given delegated permissions for common support tasks without granting Domain Admin privileges.
+
+The helpdesk account can:
+
+- Identify locked accounts
+- Unlock user accounts
+- Reset user passwords
+- Require password change at next logon
+- Retrieve LAPS passwords when authorized
+
+Example:
+
+```
+Unlock-ADAccount -Identity emil.andersson
+```
+
+![Helpdesk Unlock](screenshots/helpdesk-unlock.png)
+
+## Least Privilege
+
+The helpdesk account was intentionally kept outside privileged domain groups.
+
+An attempt to modify the Domain Admins group was denied:
+
+```
+Add-ADGroupMember "Domain Admins" -Members alex.helpdesk
+```
+
+The operation returned:
+
+```text
+Insufficient access rights to perform the operation
+```
+
+This verifies that the helpdesk account only has the permissions that were explicitly delegated.
+
+![Least Privilege](screenshots/helpdesk-access-denied.png)
