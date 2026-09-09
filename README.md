@@ -133,3 +133,36 @@ gpresult /scope computer /r
 
 ![Applied Group Policies](screenshots/gpresult.png)
 
+## Windows Firewall Through Group Policy
+
+A Windows Firewall rule blocking inbound TCP port `44444` was deployed through Group Policy.
+
+The active rule was verified on CLIENT01 using:
+
+```
+Get-NetFirewallRule -PolicyStore ActiveStore |
+Where-Object DisplayName -like "*44444*" |
+Select-Object DisplayName,Enabled,Direction,Action,PolicyStoreSourceType
+```
+
+The result confirmed that the rule was enabled, inbound, blocking traffic, and originated from Group Policy.
+
+![Firewall GPO](screenshots/firewall-gpo.png)
+
+## Account Lockout and Security Auditing
+
+A domain account lockout policy was configured with a threshold of five failed login attempts.
+
+Locked accounts were identified using:
+
+```
+Search-ADAccount -LockedOut
+```
+![Locked Account](screenshots/locked-account.png)
+
+A test account was intentionally locked by submitting incorrect credentials.
+
+The lockout was also verified in the Domain Controller Security log using **Event ID 4740**.
+
+
+![Event 4740](screenshots/event-viewer-4740.png)
