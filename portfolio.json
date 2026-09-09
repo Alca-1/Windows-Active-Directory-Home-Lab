@@ -1,0 +1,18 @@
+{
+  "title": "Windows Active Directory Home Lab",
+  "description": "A Windows enterprise infrastructure lab built in Proxmox demonstrating Active Directory Domain Services, DNS, Group Policy, file access control, PowerShell automation, delegated administration, least privilege and Windows LAPS.",
+  "tech": [
+    "Windows Server 2022",
+    "Windows 11",
+    "Active Directory",
+    "DNS",
+    "Group Policy",
+    "PowerShell",
+    "Windows LAPS",
+    "SMB",
+    "NTFS Permissions",
+    "Proxmox VE"
+  ],
+  "platforms": [],
+  "image": "screenshots/ad-ou-structure.png"
+}
