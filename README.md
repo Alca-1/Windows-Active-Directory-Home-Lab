@@ -57,3 +57,38 @@ FS_IT_RW
 ![A users membership in a group](screenshots/user-member-gg.png)
 
 ![AGDLP Group Membership](screenshots/domain-local-group.png)
+
+## Domain Join and DNS
+
+CLIENT01 was joined to the `adlab.test` domain and configured to use DC01 as its DNS server.
+
+Domain membership was verified using:
+
+```
+Get-ComputerInfo | Select-Object CsName,CsDomain
+```
+
+![Domain Join](screenshots/domain-join.png)
+
+Client DNS configuration was verified using:
+
+```
+ipconfig /all
+```
+![DNS Configuration](screenshots/client-dns.png)
+
+DC01 name resolution was tested with:
+
+```
+nslookup dc01.adlab.test
+```
+![DNS Lookup](screenshots/dns-lookup.png)
+
+Active Directory service discovery was also verified using the LDAP SRV record:
+
+```
+nslookup -type=SRV _ldap._tcp.dc._msdcs.adlab.test
+```
+![DNS SRV Record](screenshots/dns-ldap-srv.png)
+
+
