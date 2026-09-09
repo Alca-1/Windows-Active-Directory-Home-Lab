@@ -91,4 +91,45 @@ nslookup -type=SRV _ldap._tcp.dc._msdcs.adlab.test
 ```
 ![DNS SRV Record](screenshots/dns-ldap-srv.png)
 
+## File Shares and Access Control
+
+Two departmental SMB shares were created:
+
+```text
+\\DC01\IT
+\\DC01\HR
+```
+
+Mapped drives are deployed to users through Group Policy.
+
+Access was verified so that:
+
+- IT users can access the IT share but not the HR share
+- HR users can access the HR share but not the IT share
+
+![IT Mapped Drive](screenshots/it-user.png)
+
+![IT User Denied HR Share](screenshots/it-user-access-denied.png)
+
+![HR Mapped Drive](screenshots/hr-user.png)
+
+![HR User Denied IT Share](screenshots/hr-user-access-denied.png)
+
+## Group Policy
+
+Several workstation policies were deployed using Group Policy:
+
+```text
+GPO-Workstations-Test
+GPO-Workstation-Firewall
+GPO-Workstations-LAPS
+```
+
+Policy application on CLIENT01 was verified using:
+
+```
+gpresult /scope computer /r
+```
+
+![Applied Group Policies](screenshots/gpresult.png)
 
