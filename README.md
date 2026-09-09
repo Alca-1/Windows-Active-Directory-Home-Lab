@@ -206,3 +206,47 @@ Insufficient access rights to perform the operation
 This verifies that the helpdesk account only has the permissions that were explicitly delegated.
 
 ![Least Privilege](screenshots/helpdesk-access-denied.png)
+
+## Windows LAPS
+
+Windows LAPS was configured to manage the local administrator password on CLIENT01.
+
+The managed local account is:
+
+```text
+CLIENT01\client1
+```
+
+Passwords are automatically generated and stored encrypted in Active Directory.
+
+Access to LAPS passwords is delegated through:
+
+```text
+GG_LAPS_Readers
+```
+
+LAPS was verified using:
+
+```
+Get-LapsADPassword -Identity CLIENT01 -AsPlainText
+```
+
+The result confirmed:
+
+```text
+Source              : EncryptedPassword
+DecryptionStatus    : Success
+AuthorizedDecryptor : ADLAB\GG_LAPS_Readers
+```
+
+The password has been redacted from the screenshot.
+
+![Windows LAPS](screenshots/laps-verification.png)
+
+Password rotation was also tested using:
+
+```
+Reset-LapsPassword
+```
+
+A new password was successfully generated and stored in Active Directory.
